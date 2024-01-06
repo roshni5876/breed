@@ -23,7 +23,6 @@ class HomeScreenState extends State<HomeScreen> {
         return BreedListWidget(
           mediaList: mediaList ?? [],
           function: (Breed breed) {},
-          
         );
       case Status.ERROR:
         return const Center(
@@ -37,7 +36,6 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    
     Provider.of<BreedViewModel>(context, listen: false).fetchMediaData();
     super.initState();
   }

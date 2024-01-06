@@ -26,7 +26,7 @@ class BreedListWidgetState extends State<BreedListWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    breed.name ?? '',
+                    "Name : ${breed.name} " ?? "",
                     style: const TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
@@ -34,9 +34,9 @@ class BreedListWidgetState extends State<BreedListWidget> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(
-                    height: 6,
-                  ),
+                  // const SizedBox(
+                  //   height: 6,
+                  // ),
                   Text(
                     breed.bredFor ?? '',
                     style: const TextStyle(
@@ -46,9 +46,9 @@ class BreedListWidgetState extends State<BreedListWidget> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
+                  // const SizedBox(
+                  //   height: 2,
+                  // ),
                   Text(
                     breed.breedGroup ?? '',
                     style: const TextStyle(
@@ -58,9 +58,9 @@ class BreedListWidgetState extends State<BreedListWidget> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
+                  // const SizedBox(
+                  //   height: 2,
+                  // ),
                   Row(
                     children: [
                       ClipRRect(
@@ -85,9 +85,9 @@ class BreedListWidgetState extends State<BreedListWidget> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
+                  // const SizedBox(
+                  //   height: 2,
+                  // ),
                   Row(
                     children: [
                       ClipRRect(
@@ -98,9 +98,9 @@ class BreedListWidgetState extends State<BreedListWidget> {
                           child: Icon(Icons.height_sharp),
                         ),
                       ),
-                      const SizedBox(
-                        width: 5.0,
-                      ),
+                      // const SizedBox(
+                      //   width: 5.0,
+                      // ),
                       Text(
                         "${breed.weight!.imperial}-${breed.weight!.metric}",
                         style: const TextStyle(
@@ -120,27 +120,60 @@ class BreedListWidgetState extends State<BreedListWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
+    
     return SingleChildScrollView(
       child: Column(children: <Widget>[
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: widget.mediaList.length,
-          separatorBuilder: (context, index) {
-            return const Divider();
-          },
-          itemBuilder: (BuildContext context, int index) {
-            Breed data = widget.mediaList[index];
-            return InkWell(
-              onTap: () {
-                widget.function(data);
-              },
-              child: _buildItem(data),
-            );
-          },
-        ),
+        // ListView.separated(
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   scrollDirection: Axis.vertical,
+        //   itemCount: widget.mediaList.length,
+        //   separatorBuilder: (context, index) {
+        //     return const Divider();
+        //   },
+        //   itemBuilder: (BuildContext context, int index) {
+        //     Breed data = widget.mediaList[index];
+        //     return InkWell(
+        //       onTap: () {
+        //         widget.function(data);
+        //       },
+        //       child: _buildItem(data),
+        //     );
+        //   },
+        // ),
+        GridView.builder(
+
+          
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, ),
+            itemCount: widget.mediaList.length,
+            itemBuilder: (BuildContext context, int index,  ) {
+              Breed data = widget.mediaList[index];
+              // return Container(
+              //   height: 30,
+              //   width: 40,
+              //   color: Colors.amber,
+              // );
+              return InkWell(
+                onTap: () {
+                  widget.function(data);
+                },
+                child: Card(
+                  elevation: 2,
+                  child: Container(
+                    
+                                 
+                  // ),
+                   child:  _buildItem(data),),
+                ),
+              );
+            }),
       ]),
     );
   }

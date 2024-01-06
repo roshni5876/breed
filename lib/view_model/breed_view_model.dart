@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:the_dogapi/model/apis/api_response.dart';
 import 'package:the_dogapi/model/models/breed.dart';
 import 'package:the_dogapi/model/repositories/breed_repository.dart';
@@ -18,10 +19,13 @@ class BreedViewModel with ChangeNotifier {
 
   Future<void> fetchMediaData() async {
     _apiResponse = ApiResponse.loading('Fetching data');
-    notifyListeners();
+    Consumer(
+      builder: (BuildContext context, value, Widget? child) {
+        return Container();
+      },
+    );
 
     try {
-     
       List<Breed> mediaList = await BreedRepository().fetchMediaList();
       _apiResponse = ApiResponse.completed(mediaList);
     } catch (e) {
